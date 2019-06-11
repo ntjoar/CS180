@@ -1,0 +1,22 @@
+CS180 Homework 8
+Problems 22, 23, 34
+22a. 1 1 1
+     1 0 0
+	 1 0 0
+
+22b. Draw a bipartite graph G where we have n vertices on both sides. 
+We have an edge between vertex i (on the left side) and vertex j (on the right side) iff M(i, j) is 1. 
+Now, show that such a swapping exists iff G has a perfect matching.
+
+23. Run Edmonds-Karp algorithm on graph G, which gives you max flow f and residual graph Gf By u -> v, we mean that there is a directed path starting from vertexuand ending in vertexv, in the graph Gf. Consider U={u s->u}  Gfis disconnected under any min-cut, for any min-cut (A, B) where U subset A. All elements ofUare upstream vertices. Similarly D={u u->t} are all downstream.
+Now we show that all the vertices in V-U-D are central. Consider min-cut (A, B) obtained by our residual network Gf and its corresponding max-flow f. Consider the set Z={v:v->u in Gf}. u is not in U, thens is not in Z and so c(A, Z) =f(A, Z). So (A-Z, B∪Z) is also a min cut
+
+34a. To check the backup devices that can be found, the phones in location p1 are fully connected. Graph G(XUY,E), which is bipartite represents connection of X phone sets  with  Y base station. Edge (pi,bj) exists s.t,. distance between pi and bj is d.
+If all phones are connected to the base stations, graph G is said  to be in perfect matching state and it is only in perfect matching state that backup set S' can be found in which device is connected to k other devices in d radius
+Due to bipartite graph G, time taken to check for a perfect match state for base bi is O(n^3)
+A position t is such that it lies on path of phone p1. It is either first phone to enconter the base or the first to go off range. Path for phone p1 cna be tracked in a line format and k set of devices with base bj is in circular radius d.
+For each phone to maintain contact are 2xn events in total. Each phone event can be traced by its coordinates
+The bipartite graph  G  does not change between consevutive events interval. It changes for any event ti when an edge which is incident to p1 is added or removed from contact set
+G can be said in perf matching state iff each substate are in perf matching state
+
+34b. Similarly, the graph G can be tested in O(n^4) time for perfect matching state. This time can be reduced because a perfect matching  m for graph stat G[ti] can act matching state for  graph state G[ti+1] if any of the edge in M is removed during event ti. Single augmenting path is traced to decide if n-1 exists, which can be raised to perfect match. Time takenfor single augmenting path check is O(|E|)=O(n^2). Hence the time is reduced to O(n^3) and for all other states, it's O(kn^2). As k < 2xn, time becomes O(n^3).

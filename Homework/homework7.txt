@@ -1,0 +1,38 @@
+CS180 Homework 7
+Problems 11, 14, 17, 29
+11. See page 2
+	
+14a. Given  sink node t and conneced with  each node in S with directed edge to t with capacity |X|
+If required routes exist max flow = |X|
+	Use |X| unit capacity edges from source to each of the nodes in X. From there, we have a path  from each  node in X to some node in S using unique edges. Thus flow exists
+If maxflow=|X|, required routes exist
+	Each node in X is receiveing unit capacity flow from s and since this flow reaches t, each edge between X and S are unit capacity. Thus, we have a unique  path from every node in X to some node in S
+
+14b. Create a network flow problem as assign unit capacity to all existing edges. Introduce source nodes and connect it to each node in x with a  unit capacity  directed edge. Introduce  sink mode t and connect to each  node in s with directed edge to t with capacity |X|,  Calculate max-flow iff such routes exist
+If require routes exist, maxflow=|X|. From there, we have a path from each node in x to some node in S using unique edges. 
+If max-flow = |X|, required routes exist. If max-flow =|X| each  node in x is receiving unit capacity flow from s, and since all this flow is reaching t and each edge between x and s is unit capacity, all of this flow must be using unique edge. Thus, we have a uniquepath. 	
+
+17. Given that an algorithm accomplishes this task using only O(klogn) pings
+*Restricted ot O(Llog n) oungs
+Run time should not be restricted
+Instead it should be poly time
+Max flow of R' are disjoint pahts
+The disjoint paths are
+p1,...,pk
+Using foxd fulkssion  algo these paths can be formed is O(mk)
+Intruder has k arc
+Ones are destroyed by each path
+We  cannot space two paths for a single arc
+Path has O(n) length each
+Bisection-search ping algo used to remove pi
+If vertex is formed, ping, it otherwise vertex-3-quetus along pi 
+Thus O(logn) comes from removing each edge
+Perform BFS O(m)->G-removed edges
+Return vertices that don't exist
+
+29. This problem can be solved by Min-Cut method
+Stat by creating an undirected graph as graph that has vertex for every software application. Call them v1, v2, ... vn, where vi corresponds to application i. There is a special vertex t. If apps i and j have an associated value xij, then we have an edge between vi and vj of capacity xij
+For Every  vertex vi, i ≠ 1 we have edge (vi, t) of capacity bvi
+We can say  that v1-t min-cut will give desired answer
+Let x be such a cut so v1 in x an t not in x capcity  of x = sum from i, j, vi in x to vj not in x of xij - sum of bvi plus sum of bv. This is same as expense minus benefit of moving applications which are not in set x
+Thus, finding a mincut is same as findign set of apps from which expense minus benefit is minimized or benefit minus expense is maximized.

@@ -1,0 +1,13 @@
+CS 180 Homework 4
+Problems 22, 25, 28, 30
+22. Consider a graph with four nodes, v1, v2, v3, and v4, each with an edge of length 2, except (v1, v3) has length 1.
+	In this case, all trees would be min except 3 vertices of size 2.
+
+25. Running Kruskal's algorithm, we build inductively. Starting with Ci and Cj, we merge using edge of length l. We continue and start by creating a new node v to be a parent of Ci and Cj, and give v a height of l. 
+	For this, note that pi and pj, the quantity T(pi,pj) is equal to the edge length when they were first joined. We must have T(pi, pj) ≤ d(pi, pj) since they belong to the same component.
+	Now suppose the complement of this happened with a tree T'. If h' is the height of v' in T', T'(pi, pj) = h' > T(pi, pj).
+	Consider now (pi, pj), where P is the path in the min spanning tree. Since pi is not in Ti', there is a node p' in T'. This is a contradiction to Kruskal's algorithm.
+
+28. Start with noticing that the two facts related to graph H is defined previously. If T and T' are neighbors in H, the number of X-edges in T can differ from the number of X-edges in T'. The solution to the previous problem also provides a poly-time algo. We call a tree feasible if it has k X-edges. We start by computing some tree with a minimum number 'a' of edges. Same can be done with 'b' number of edges, and we know if k < a or k > b then no feasible tree exists. If k = a or k = b, we immediately know that such tree exists. However, if k is situated between a and b, we construct a tree corresponding to T and T', in which we note that only one path changes in our solution. Thus, we return such tree. 
+
+30. In a Steiner Tree T on X U Z SUBSET V, |X|=k, where X is the terminals and Z is extra nodes. We claim each node has degree T, due to the triangle inequality. Since the sum of degrees is 2t-2, each tree has at least as many nodes of tree T of size 2. Hence, |Z| ≤ k. Since we have one of these and there are C(n, 2k) trees, our efficiency is n^(O(k)).

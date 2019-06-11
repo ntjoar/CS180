@@ -1,0 +1,50 @@
+CS180 Homework 6
+Problems 19, 2, 3, 5
+
+19. Suppose s has n characters. Consider repitition of x' consisting of exactly n charcters and repition of y' of y consisting of n charcters. Let s[j] denot jth character of s. We know that if s is interleaving of x' and y', its last charcter comses from either x' or y'. M[i,j] = yes if s[1: i+j] is interleaving of x'[1:i] and y'[1:j]. If the final charcter is either x'[i] or y'[i], we have M[i,j] = yes iff M[i-1, j] = yes and s[i+j]=x'[i], or M[i, j-1] = yes and s[i+j]=y'[j]
+Build using loop
+M[0,0] = yes
+For k = 1, 2,..., n
+	For all pairs (i,j) s.t. i+j = k
+		If M[i-1,j] = yes and s[i+j]=x'[i] || M[i, j-1] = yes and s[i+j]=y'[j]
+			M[i, j] = yes
+		Else 
+			M[i, j] = no
+	Endfor
+Endfor
+Ret
+Time is O(n^2), because i and j can have n values each
+
+2. Divide and conquer alg takes sequence of distinct numbers a1,..., an and returns N, where N is number of significant inversions and a'1,...,a'n is sequence in increasing order
+For n=1 , alg returns N=0
+For n>1
+Let k be floor(n/2)
+Call Alg(a'1,...,a'k) and let it return N1 and b1, ..., bk
+Call Alg(a'k+1,...,a'n) and let it return N2 and b(k+1),...,bn
+Compute significant inversions between i and j, where i≤k<j and store in N3
+Return N = N1 + N2 + N3 AND a'1,..., a'n = Merge(b1,...,bk; bk+1,...bn)
+Merge is in O(n) time
+
+3. Let e1,..., en denote equivelence classes, where i and j are equiv. if ei = ej. We are looking for a value x so that more than n/2 indices have ei = x.
+Divide cards into two piles: floor(n/2) and roof(n/2). Recursively run both sides and assumethe algorithm finds and equiv class it will return the samole
+Note if more than n/2 cards are equiv, then at least one of the two sides will have more than half the cards equiv to x, so at least one returns.
+If |S| = 1, return one card
+If |S| = 2
+	Test if equiv
+	Return either card if equiv
+Let S1 be set of floor(n/2)
+S2 is the remaining cards
+Call algo recursively  for S1
+If card is returned
+	Test against all cards
+If no card with majority has been found
+	Call for S2
+	If returned
+		Test against all cards
+Return if one is found
+Correctness follows that if there is a majority equiv class, then this must be a majority equiv class for at least one of the two sides
+The Recurrence follows that T(n) ≤ 2T(n/2) + 2n, which gives us O(nlogn)
+
+5. Label the lines in order of increasing slope. If n≤3, we can find the visible lines in constant time
+Let m = roof(n/2). Recursively compute L1,..., Lm. We can also compute a1,...,ap-1 where ak is the intersection of line Lik and Lik+1
+Merge sorted lists a1, ..,ap-1 and b1, ...,bq-1 into single list of point c. This takes O(n) time. Compare uppormost lines of L and L'. 

@@ -1,0 +1,47 @@
+CS 180 Homework 5
+Problems 3, 4, 6, 12
+3a. The graph v1, ..., v5 with edges (v1, v2), (v1, v3), (v2, v5), (v3, v4), and (v4, v5) is an example in that it returns 2 corresponding to (v1, v2) and (v2, v5), where the OPT is 3 for all others.
+
+3b. Using dynamic programming,
+longPath(n)
+	Array  M[1, ..., n]
+	M[1] = 0
+	For 2, ..., n
+		M = -inf
+		For all edges (j, i)
+			if M[j] != -inf
+				if M < M[j]+1
+					M = M[j]+1
+				endif
+			endif
+		endfor
+		M[i] = M
+	endfor
+Ret M[n]
+Running time is O(n^2) assuming all nodes can be entered in O(n).
+
+4a. Suppose M = 10, {N1, N2, N3} = {1, 4, 1} and {S1, S2, S3} = {20, 1, 20}. Optimal plan is [NY, NY, NY], but greedy returns [NY, SF, NY].
+
+4b. Suppose M = 10, {N1, N2, N3, N4} = {1, 100, 1, 100} and {S1, S2, S3, S4} = {100, 1, 100, 1}. This gives us [NY, SF, NY, SF], which has cost 34 and moves 3 times. Any other plan is not optimal as it has cost 100.
+
+4c. Cost of the optimal plan is n-1, ending in NY.
+    Cost of the optimal plan is n-1+M, ending in SF.
+So, 
+OPTN(0) = OPTS(0) = 0
+For i = 1, ..., n
+	OPTN(i) = Ni + min(OPTS(i-1), M+OPTN(i-1))
+	OPTS(i) = Si + min(OPTS(i-1), M+OPTN(i-1))
+End
+Ret min(OPTN(n), OPTS(n))
+
+6. We define OPT[I] to be the value of the optimal solution on the set of words. Si,j is a slack of a line containing the words. Compute all Si,j in O(n) time by considering values in increasing order->O(n^2)
+Compute all values Si,j 
+Set OPT[0] = 0
+For k = 1, ..., n
+	OPT[K] = min_(1<=j<=k)(S^2_(j,k) + OPT[j-1])
+Endfor
+Ret OPT[n]
+Total runtime is O(n^2) as for loop is just a feather 
+
+12. Let OPT(j) be min cost of a solo on servers 1 through j given that we place a copy of the file at server j. Suppose optimal solution exists at position i. The cost of all servers up to i is OPT(i). Cost of servers after that to j is C(j-i, 2). Thus, our optimal solution is:
+OPT(j) = cj + min_(1<=j<=k)(OPT(i)+C(j-i, 2))

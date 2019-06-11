@@ -1,0 +1,10 @@
+CS 180 Homework 2
+Problems 15, 22, 36
+15. Consider the example in the problem that we are given for this. In this, we have to note that we are to find one of the smallest sets possible. Note for this we have n! permutations of the locations with frequencies. Now, let's say we start at the smallest value. This will lead to increase with ending result still being n!. Thus, the following problem is O(n!), which is NP Complete. 
+
+22. Let's start with the base case we can give the answer A if V = Ø or k = 1. Let us use induction now to prove that this works.
+Adding an We ask A whether G* has an independent set of size k and return this answer
+If G has independent set, k > 1 does by law of reduction. We note however that v* will not be in this set. G has an independent set of k iff G* does, so answer is correct.
+
+36. I claim this problem to be an issue of the Hamiltonian cycle. I believe this is so, because we can set up a problem in that the ingredients are set as the vertices and the course path taken is the edges. In this, we note that we are trying to find a method in which we should visit every vertex at least once and trying to find a least costly algorithm. The Hamiltonian cycle here is a subalgorithm of the complete problem, thus allowing reduction.
+Because this problem can be reduced into the Hamiltonian cycle, it is NP-Complete.

@@ -1,0 +1,22 @@
+CS 180 Homework 3
+Problems 3, 7, 12, 16
+3. For this problem, assume that there exists n boxes, b_i. Each box has weight w_i, and all trucks can carry up to W weight. We assume that there are N trucks to send out, each not being overloaded and that the order of arrivals is preserved. Firstly, assume that we have the minimum number of trucks used for n boxes. For the base case, we can see that at  the  first case, 1 truck is used to send 1 box with weight w. For n+1 boxes, assume that each weight is W. Here, there are N+1 trucks, but with less weight, there will be less trucks used proportionately. This decreases and results in the most efficient amount of trucks being used in this problem.
+
+7. Run the schedules in decreasing order of f
+   For this one, we know that ordering f in decreasing order will take O(n log n). Once we order, we run through the problem in decreasing order such that we take in first the onese that have a high wait time for computers usage. Once these are done preprocessing, the processors will compute in the longest time possible, allowing for the preprocessor a higher chance of finishing the preprocessing step before any computer becomes available again. When reversed, the preprocessor may still be running as the computers finish, leaving us with the issue of there being an inefficiency that there will be no running processes as the preprocessor runs.
+
+12a. False: Let t_1 = t_2 = 1, b_1 = r + 1, and b_2 = r - 1. In this case, stream 2 precedes stream 1.
+
+12b. Set i = b_i/t_i
+	Send streams in decreasing order
+	Check if claim follows
+Explanation: For this, we keep everything relatively simple; the program runs in O(n) because all we have to do is divide and check. Once we run into any i that does not follow the claim, we return false.
+
+16. Let n be the number of intervals and x_i being the intervals
+for i = 1 to n
+	if there are unmatched intervals containing x_i
+		Match x_i to earliest ending
+	else
+		return no perfect matching
+Algorithmic eff: O(n^2)
+Explanation: We only check 1 to n and check for intervals which runs again 1 to n, while that also finds the earliest ending sequence.

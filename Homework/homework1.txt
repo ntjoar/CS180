@@ -1,0 +1,41 @@
+CS 180 Homework 1
+Problems 4, 6, 7, 8
+4. g1, g3, g4, g5, g2, g7, g6
+Explanation:
+g1 comes before g3 due to the fact that sqrt of any value is less than the value itself
+g3 is less than g4 because log n grows slower than n
+g4 is less than g5 because to the power of a constant is less than to the power of an n
+g5 before g2 the n exponential grows faster than log n
+g2 goes before g7 because n^2 grows faster than n
+g7 before g6 because n^2 grows slower than 2^n
+
+6a. The outer loop runs in N time, along with the inner loop, which also runs in N time. We know that storing takes constant time. However, addition here can take O(j - i + 1) time, as we are adding j - i + 1 values. This translates to n time at worst case, so we assume as such, leaving us with n^2 * n. We can claim that this will take O(n^3) time.
+
+6b. Consider for a second when j <= n/4 and i <= 3n/4. Plugging it into j - i + 1, we can see that j - i + 1 > n/4 - 3n/4 + 1 > n/2. We get n/2 by counting adding of the terms from A[i] to A[j], where we know that this requires at least n/2 terms. We note that n/4 is iterated twice, giving us (n/4)^2. So, we get (n/2)*(n/4)^2, which later gives us n^3 when reducing.
+
+6c. Algorithm below:
+For i = 1, 2, ..., n
+	B[i, i+1] = A[i] + A[i+1]
+For i = 1, 2, ..., n - 2
+	For j = i + 2, ..., n
+		B[i, j] = B[i, j - 1] + A[j]
+		
+In the algorithm above, we know that the program runs at O(n^2) operations, as each adding operation requires O(1) time now.
+
+7. For this song, we need a certain amount of lines. Let's name this K
+line 1 = ...
+line 2 = ...
+...
+line K = ...
+For i = 1, 2, ... K
+	For j = 1, 2, ... i
+		Sing j through 1
+	Endfor
+Endfor
+
+We see in the above, we have 2 constants. The nested for loop is bounded by some constant, c1. Each of the lines has length of c2. Space required here, thus is c1 + c2*L
+For our efficiency, however, we note that the words sung will be 1+2+...+L = L^2. This is less than n, so when we translate this over, we get O(sqrt(N))
+
+8a. If we have only 2 jars, we are taking a gamble by dropping it from the top rung. However, if we take the square  root of the number of rungs and round down, we can reduce our search time to O(sqrt(N)). Why? We start at first at j*sqrt(n) height. Given it does not break, we can say  the highest safe rung is between there and (j-1)sqrt(n). Thus, we simply add 1 to (j-1)sqrt(n) and test on upwards. 
+
+8b. Using a similar principle to 8a, if we start by partitioning the jars again based on how many jars we have, we can set a recursive principle such that we repartition per jar broken since we know an approximate range of where we partition.
